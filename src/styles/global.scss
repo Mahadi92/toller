@@ -1,0 +1,52 @@
+
+// ----------- Container -------------- //
+.wrapper{
+  @apply max-w-7xl m-auto px-4 xl:px-0;
+}
+
+// ---------- sizing ---------- //
+h1,
+.heading{
+  @apply text-4xl text-font m-0 leading-none;
+}
+
+h2,
+.subheading{
+  @apply text-base text-font-200 m-0 leading-none;
+}
+
+// ----------- Buttons ----------- //
+.btn{
+}
+.btn-primary{
+  @extend .btn;
+}
+.btn-secondary{
+  @extend .btn;
+}
+
+.rounded-lg-img img{
+    border-radius: 0.5rem;
+}
+.rounded-full-img img{
+    border-radius: 9999px;
+}
+.rounded-l-lg-img img{
+    border-top-left-radius: 0.5rem; 
+    border-bottom-left-radius: 0.5rem,; 
+}
+// ----------- Fonts ----------- //
+.font-kaushan{
+  font-family: 'Kaushan Script', cursive;
+}
+
+
+.glassDesign{
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.21);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.3px);
+  -webkit-backdrop-filter: blur(5.3px);
+  border: 1px solid rgba(255, 255, 255, 0.49);
+  @apply rounded-lg;
+}
