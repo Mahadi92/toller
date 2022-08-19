@@ -9,6 +9,7 @@ import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import OtpInput from "react-otp-input";
 import { useState } from "react";
 import { GetServerSideProps, NextPage } from "next";
+import axios from "axios";
 
 const { Option } = Select;
 
@@ -48,6 +49,15 @@ const VerificationPage: NextPage<PropsType> = ({ purpose, email }) => {
   const handleOnSubmit = (otp: any) => {
     console.log(otp);
   };
+
+  const getResult = async (token: String) => {
+    try {
+      const result = await axios.get(`http://localhost:5000/auth/email-confirmation?token=${token}`)
+      console.log(result.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
 
   // @ts-ignore
   return (
