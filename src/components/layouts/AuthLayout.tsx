@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { BsArrowLeftShort } from "react-icons/bs";
 
 interface PropType {
   children?: JSX.Element | JSX.Element[];
@@ -16,6 +18,15 @@ const AuthLayout: React.FC<PropType> = ({ children }) => {
           <h1 className="font-kaushan text-4xl text-blue-900">Toller</h1>
         </div>
         {children}
+
+        <div className="flex justify-end pt-16">
+          <Link href="/">
+            <a className="flex justify-center item-center border-2 border-primary text-gray-600 hover:text-white hover:bg-primary px-6 py-2 rounded-md">
+              <BsArrowLeftShort size={26} />
+              <span>Back to Home</span>
+            </a>
+          </Link>
+        </div>
 
         <p className="block md:hidden tracking-wider text-center pt-14">
           © 2022 Toller. All rights reserved.
