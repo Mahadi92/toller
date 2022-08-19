@@ -50,10 +50,24 @@ const VerificationPage: NextPage<PropsType> = ({ purpose, email }) => {
     console.log(otp);
   };
 
+  //call this function in useEffect with proper way
   const getResult = async (token: String) => {
     try {
       const result = await axios.get(`http://localhost:5000/auth/email-confirmation?token=${token}`)
       console.log(result.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
+
+  const resendVerifyMail = async () => {
+    try {
+      //set user email in email section
+      const result = await axios.post('http://localhost:5000/auth/resend-confirmation-mail', {
+        email: "diroba3671@wnpop.com",
+        acc_verify_url: "https://loalhost:5000/verify"
+      })
+      console.log(result);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -103,7 +117,7 @@ const VerificationPage: NextPage<PropsType> = ({ purpose, email }) => {
                 <p className="py-5 text-sub-color-gray">
                   Code valid for 05 minutes
                 </p>
-                <button className="text-primary block">
+                <button onClick={() => resendVerifyMail()} className="text-primary block">
                   Resend Verification Mail
                 </button>
               </>
