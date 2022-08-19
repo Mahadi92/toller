@@ -1,0 +1,56 @@
+.hero-content{
+  background: rgb(0,0,0);
+  background: linear-gradient(90deg, rgba(0,0,0,0.9489559164733179) 0%, rgba(0,0,0,0.8375870069605569) 27%, rgba(0,0,0,0.016241299303944357) 100%);
+}
+
+
+.vehicleSelectBox{
+  .ant-select-selector{
+    height: 100% !important;
+    @apply flex items-center;
+  }
+}
+
+.dashboard-sidebar-items{
+    @apply w-full pt-10;
+
+    li{
+        @apply w-full relative;
+        a{
+            @apply w-full flex items-center gap-3 py-4 border-l-4 border-transparent hover:bg-blue-50 text-base text-gray-700 font-medium pl-5;
+        }
+        .dashboard-sidebar-item-active{
+            @apply bg-blue-50 border-l-4 border-blue-400 text-blue-400;
+        }
+    }
+}
+
+
+
+/* width */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+.sidebar::-webkit-scrollbar-track {
+    /* background: #f1f1f1; */
+    background: rgba(0, 0, 0, 0);
+
+}
+
+/* Handle */
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0);
+    border-radius: 20px;
+}
+
+/* Handle on hover */
+.sidebar::-webkit-scrollbar-thumb:hover {
+    /* background: #4169E1; */
+    background: #757575;
+}
+.sidebar::-webkit-scrollbar-track:hover .ant-sidebar::-webkit-scrollbar-thumb {
+    background: #757575 !important;
+}
+
