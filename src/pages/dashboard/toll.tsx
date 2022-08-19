@@ -13,21 +13,22 @@ import InputField from "@/components/InputField";
 const { Column } = Table;
 
 interface Inputs {
-  category: string;
+  vehicleType: string;
+  toll: string;
 }
 
-const categoryData = [
-  {
-    category: "Yo",
-    id: "123456789",
-  },
+const vehicleData = [
+  { id: "11", vehicleType: "Car", toll: "200" },
+  { id: "22", vehicleType: "Truck", toll: "200" },
 ];
 
 const Toll = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [editedToll, setEditedToll] = useState({ vehicleType: "", toll: "" });
 
   const validationSchema = Yup.object().shape({
-    category: Yup.string().required().label("Category"),
+    vehicleType: Yup.string().required().label("Vehicle type"),
+    toll: Yup.string().required().label("Toll"),
   });
 
   const {
@@ -55,34 +56,57 @@ const Toll = () => {
           {/* --------------- Add Category ---------------- */}
           <form
             onSubmit={handleSubmit(onAddCategorySubmit)}
-            className="flex items-end gap-5"
+            className="w-full md:w-1/2 grid gap-5"
           >
-            <div className="w-4/6 lg:w-3/6">
-              <InputField
-                type="text"
-                name=""
-                label="Add Category"
-                placeholder="Write here"
-              />
-            </div>
+            <InputField
+              type="text"
+              name=""
+              label="Vehicle Type"
+              placeholder="Write here"
+              hasError={Boolean(errors.vehicleType)}
+              helperText={errors.vehicleType?.message}
+              rest={register("vehicleType")}
+            />
+            <InputField
+              type="text"
+              name="toll"
+              label="Toll Price"
+              placeholder="Write here"
+              hasError={Boolean(errors.toll)}
+              helperText={errors.toll?.message}
+              rest={register("toll")}
+            />
             <button className="px-5 text-white font-semibold rounded-md h-input bg-primary">
               Add
             </button>
           </form>
 
-          {/* ---------------- category table ----------------------- */}
+          {/* ---------------- Toll table ----------------------- */}
           <div className="w-full py-10">
-            <Table dataSource={categoryData}>
-              <Column title="Category" dataIndex="category" key="category" />
+            <Table dataSource={vehicleData}>
+              <Column
+                title="Vehicle Type"
+                dataIndex="vehicleType"
+                key="vehicleType"
+              />
+              <Column
+                title="Toll Price"
+                dataIndex="toll"
+                key="toll"
+                align="center"
+              />
               <Column
                 title="Actions"
                 key="id"
                 align="right"
-                render={() => {
+                render={(toll) => {
                   return (
                     <div className="flex justify-end items-center gap-3">
                       <button
-                        onClick={() => setIsOpenModal(true)}
+                        onClick={() => {
+                          setEditedToll(toll);
+                          setIsOpenModal(true);
+                        }}
                         className="flex justify-center items-center gap-2 bg-blue-50 rounded-md px-2 py-1 text-blue-400 text-base"
                       >
                         <FiEdit /> <span className="hidden lg:block">Edit</span>
@@ -100,24 +124,35 @@ const Toll = () => {
         </div>
       </div>
       <Modal
-        title="Edit category"
+        title="Edit Vehicle or toll"
         visible={isOpenModal}
         onCancel={() => setIsOpenModal(false)}
         footer={null}
       >
         <form
-          onSubmit={handleSubmit(handleEditCategory)}
-          className="flex items-end gap-5"
+          onSubmit={handleSubmit(onAddCategorySubmit)}
+          className="w-full grid gap-5"
         >
-          <div className="w-5/6">
-            <InputField
-              type="text"
-              name="category"
-              defaultValue={"lol"}
-              label="Edit Category"
-              placeholder="Write here"
-            />
-          </div>
+          <InputField
+            type="text"
+            defaultValue={editedToll.vehicleType}
+            name="vehicleType"
+            label="Vehicle Type"
+            placeholder="Write here"
+            hasError={Boolean(errors.vehicleType)}
+            helperText={errors.vehicleType?.message}
+            rest={register("vehicleType")}
+          />
+          <InputField
+            type="text"
+            defaultValue={editedToll.toll}
+            name="toll"
+            label="Toll Price"
+            placeholder="Write here"
+            hasError={Boolean(errors.toll)}
+            helperText={errors.toll?.message}
+            rest={register("toll")}
+          />
           <button className="px-5 text-white font-semibold rounded-md h-input bg-primary">
             Update
           </button>
