@@ -56,7 +56,7 @@ const SignUpPage = () => {
     try {
       console.log(payload);
       const { name, email, password, phone } = payload
-      const signUp = await axios.post('http://localhost:5000/auth/register', { name, email, password, phone })
+      const signUp = await axios.post('http://t-api.ataur.dev/auth/register', { name, email, password, phone })
       console.log(signUp);
     } catch (error) {
       console.log(error.response.data);

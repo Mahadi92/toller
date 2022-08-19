@@ -32,7 +32,7 @@ const LoginPage = () => {
     try {
       console.log(payload);
       const { email, password } = payload
-      const signIn = await axios.post('http://localhost:5000/auth/login', { email, password })
+      const signIn = await axios.post('http://t-api.ataur.dev/auth/login', { email, password })
       console.log(signIn.data);
     } catch (error) {
       console.log(error.response.data);

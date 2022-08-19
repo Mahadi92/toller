@@ -29,7 +29,7 @@ const ForgetPassword = () => {
     try {
       console.log(payload);
       const { email } = payload
-      const signUp = await axios.post('http://localhost:5000/auth/forget-password', {
+      const signUp = await axios.post('http://t-api.ataur.dev/auth/forget-password', {
         email,
         callBack_url: "https://loalhost:5000/reset-password"
       })

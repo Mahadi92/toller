@@ -63,7 +63,7 @@ const Ticket = () => {
       //toll amount not in payload
       const { cardName, cardNumber, cvcNumber, firstName, lastName, number, vehicleModel, vehicleRegNo,
         toll_amount } = payload
-      const result = await axios.post('http://localhost:5000/toll/new', {
+      const result = await axios.post('http://t-api.ataur.dev/toll/new', {
         cardName, cardNumber, cvcNumber, firstName, lastName, number, vehicleModel, vehicleRegNo,
         toll_amount:300
       })

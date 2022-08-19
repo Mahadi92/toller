@@ -53,7 +53,7 @@ const VerificationPage: NextPage<PropsType> = ({ purpose, email }) => {
   //call this function in useEffect with proper way
   const getResult = async (token: String) => {
     try {
-      const result = await axios.get(`http://localhost:5000/auth/email-confirmation?token=${token}`)
+      const result = await axios.get(`http://t-api.ataur.dev/auth/email-confirmation?token=${token}`)
       console.log(result.data);
     } catch (error) {
       console.log(error.response.data);
@@ -63,7 +63,7 @@ const VerificationPage: NextPage<PropsType> = ({ purpose, email }) => {
   const resendVerifyMail = async () => {
     try {
       //set user email in email section
-      const result = await axios.post('http://localhost:5000/auth/resend-confirmation-mail', {
+      const result = await axios.post('http://t-api.ataur.dev/auth/resend-confirmation-mail', {
         email: "diroba3671@wnpop.com",
         acc_verify_url: "https://loalhost:5000/verify"
       })
