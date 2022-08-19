@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FaTicketAlt, FaUser, FaUsers } from "react-icons/fa";
 import { HiTicket } from "react-icons/hi";
+import { AiFillCar } from "react-icons/ai";
 
 interface PropType {
   isOpen: boolean;
@@ -21,6 +22,11 @@ const sidebarData = [
 ];
 
 const adminSidebarData = [
+  {
+    link: "/dashboard/toll",
+    text: "Vehicle's Toll",
+    icon: <AiFillCar size="22px" />,
+  },
   {
     link: "/dashboard/users",
     text: "All Users",

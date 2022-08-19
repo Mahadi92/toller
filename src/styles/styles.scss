@@ -54,3 +54,9 @@
     background: #757575 !important;
 }
 
+
+
+.profile-dropdown-action-grp button,
+.profile-dropdown-action-grp a{
+    @apply w-full flex items-center space-x-3 px-5 py-2 text-base font-semibold hover:bg-slate-100
+}
