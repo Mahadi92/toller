@@ -44,11 +44,11 @@ const Toll = () => {
   const handleEditCategory = () => {};
   return (
     <DashboardLayout>
-      <div className="py-10">
+      <div className="pb-10">
         <div className="pb-5 pl-8 border-b">
           <div className="flex items-center max-w-4xl px-0 m-auto space-x-2 text-xl font-medium xl:px-0 text-slate-600">
             <BiCategory />
-            <span className="">Category</span>
+            <span className="">Vehicle{"'"}s toll</span>
           </div>
         </div>
 
