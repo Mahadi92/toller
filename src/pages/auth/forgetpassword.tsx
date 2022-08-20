@@ -1,6 +1,7 @@
 import InputField from "@/components/InputField";
 import AuthLayout from "@/components/layouts/AuthLayout";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -24,8 +25,18 @@ const ForgetPassword = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const handleOnSubmit = (payload: SignInFormPayload) => {
-    console.log(payload);
+  const handleOnSubmit = async (payload: SignInFormPayload) => {
+    try {
+      console.log(payload);
+      const { email } = payload
+      const signUp = await axios.post('http://t-api.ataur.dev/auth/forget-password', {
+        email,
+        callBack_url: "https://loalhost:5000/reset-password"
+      })
+      console.log(signUp.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
 
   return (

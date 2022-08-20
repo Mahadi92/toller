@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import InputField from "@/components/InputField";
 import { DatePicker, Select } from "antd";
 import { useState } from "react";
+import axios from "axios";
 
 const { Option } = Select;
 
@@ -58,6 +59,18 @@ const Ticket = () => {
 
   const handleOnSubmit = async (payload: any) => {
     console.log(payload);
+    try {
+      //toll amount not in payload
+      const { cardName, cardNumber, cvcNumber, firstName, lastName, number, vehicleModel, vehicleRegNo,
+        toll_amount } = payload
+      const result = await axios.post('http://t-api.ataur.dev/toll/new', {
+        cardName, cardNumber, cvcNumber, firstName, lastName, number, vehicleModel, vehicleRegNo,
+        toll_amount:300
+      })
+      console.log(result);
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
 
   return (

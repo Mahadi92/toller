@@ -9,6 +9,7 @@ import { useState } from "react";
 
 import toast from "react-hot-toast/headless";
 import InputField from "@/components/InputField";
+import axios from "axios";
 
 const { Option } = Select;
 
@@ -51,8 +52,15 @@ const SignUpPage = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const handleOnSubmit = (payload: SignUpFormPayload) => {
-    console.log(payload);
+  const handleOnSubmit = async (payload: SignUpFormPayload) => {
+    try {
+      console.log(payload);
+      const { name, email, password, phone } = payload
+      const signUp = await axios.post('http://t-api.ataur.dev/auth/register', { name, email, password, phone })
+      console.log(signUp);
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
 
   return (

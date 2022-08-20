@@ -1,6 +1,7 @@
 import InputField from "@/components/InputField";
 import AuthLayout from "@/components/layouts/AuthLayout";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -27,8 +28,15 @@ const LoginPage = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const handleOnSubmit = (payload: SignInFormPayload) => {
-    console.log(payload);
+  const handleOnSubmit = async (payload: SignInFormPayload) => {
+    try {
+      console.log(payload);
+      const { email, password } = payload
+      const signIn = await axios.post('http://t-api.ataur.dev/auth/login', { email, password })
+      console.log(signIn.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
 
   return (
